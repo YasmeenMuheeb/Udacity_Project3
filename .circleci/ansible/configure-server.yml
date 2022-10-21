@@ -34,4 +34,4 @@
 
   roles:
     # Your code here
-    - configure_server
+    - configure-server
