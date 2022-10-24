@@ -17,21 +17,9 @@
       ansible.builtin.pause:
         seconds: 150
         
-    - name: "update apt packages."
-      become: yes
-      apt:
-        update_cache: yes
-
-    - name: "upgrade packages"
-      become: yes
-      apt:
-        upgrade: yes
-
-    - name: "install Python"
-      become: yes
-      apt: 
-        name: python2
-        state: present
+    - name: Install Python if not already present.
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      changed_when: False
 
   # Get the environment variables from CircleCI and add to the EC2 instance
   environment:
