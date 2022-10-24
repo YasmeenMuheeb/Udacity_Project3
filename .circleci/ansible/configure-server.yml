@@ -18,7 +18,6 @@
         seconds: 150
         
     - name: Install Python if not already present.
-      update_cache: yes
       raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python)
       changed_when: False
 
