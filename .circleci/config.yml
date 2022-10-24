@@ -188,6 +188,7 @@ jobs:
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --filters "Name=tag:Name,Values=backend-*" \
             --output text >> .circleci/ansible/inventory.txt
+            
       - persist_to_workspace:
           root: ~/
           paths:
@@ -199,7 +200,6 @@ jobs:
     docker:
       # Docker image here that supports Ansible
       - image: python:3.7-alpine3.11
-      - image: amazon/aws-cli
     steps:
       # Checkout code from git
       - checkout
