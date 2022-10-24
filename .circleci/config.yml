@@ -209,6 +209,9 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
+          command: |
+            cat .circleci/ansible/inventory.txt
+      - run:
           name: Install dependencies
           command: |
             # Your code here
@@ -218,8 +221,9 @@ jobs:
           command: |
             # Your code here
             cd .circleci/ansible
-            ansible-playbook --private-key=udacity.pem -i inventory.txt configure-server.yml
-      # Here's where you will add some code to rollback on failure       
+            ansible-playbook -i inventory.txt configure-server.yml
+      # Here's where you will add some code to rollback on failure 
+      - destroy-environment      
 workflows:
   default:
     jobs:
