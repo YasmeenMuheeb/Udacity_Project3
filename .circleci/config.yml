@@ -220,7 +220,7 @@ jobs:
   configure-infrastructure:
     docker:
       # Docker image here that supports Ansible
-    - image: cimg/base:stable
+    - image: alpine:latest
     steps:
       # Checkout code from git
       - checkout
@@ -232,11 +232,11 @@ jobs:
       # attach workspace
       - attach_workspace:
           at: ~/
-#      - run:
-#          name: Install dependencies
-#          command: |
-#            # Your code here
-#            apk add --update ansible
+      - run:
+          name: Install dependencies
+          command: |
+            # Your code here
+            apk add --update ansible
       - run:
           name: Configure server
           command: |
