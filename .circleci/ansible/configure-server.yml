@@ -18,7 +18,8 @@
         seconds: 150
         
     - name: Install Python if not already present.
-      raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3)
+      update_cache: yes
+      raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python)
       changed_when: False
 
   # Get the environment variables from CircleCI and add to the EC2 instance
