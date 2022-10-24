@@ -1,9 +1,4 @@
 ---
-- name: "install Python"
-  become: yes
-  apt: 
-    name: python
-    state: present
   
 - name: "update apt packages."
   become: yes
