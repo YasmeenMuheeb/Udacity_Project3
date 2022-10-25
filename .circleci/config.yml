@@ -29,7 +29,7 @@ commands:
           name: Install Node.js 13
           command: |
             curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-            sudo apt install -y nodejs
+            apt install -y nodejs
 
   install_python:
     description: Install Python
@@ -309,7 +309,7 @@ jobs:
           at: ~/
       #- install_ansible
       - install_nodejs
-      - install_python
+      #- install_python
       - run:
           name: Get backend url
           command: |
