@@ -308,7 +308,7 @@ jobs:
       - attach_workspace:
           at: ~/
       #- install_ansible
-      - install_nodejs
+      #- install_nodejs
       #- install_python
       - run:
           name: Get backend url
