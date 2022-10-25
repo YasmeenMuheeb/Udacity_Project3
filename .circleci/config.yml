@@ -283,11 +283,9 @@ jobs:
           name: Run migrations
           command: |
               cd backend
-              # npm install
-              sudo npm install -g live-server
-              sudo npm start
-              # Run and save the migration output 
-              sudo npm run migrations > migrations_dump.txt
+              npm install
+              npm run start
+              npm run migrations > migrations_dump.txt
       - run:
           name: Send migration status to kvdb.io OR memstash.io
           command: |   
