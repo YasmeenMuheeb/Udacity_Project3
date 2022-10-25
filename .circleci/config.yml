@@ -307,7 +307,7 @@ jobs:
             yum -y install tar gzip
       - attach_workspace:
           at: ~/
-      - install_ansible
+      #- install_ansible
       - install_nodejs
       - install_python
       - run:
