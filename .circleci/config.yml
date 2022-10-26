@@ -354,12 +354,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yum -y install tar gzip
-      - run:
-          name: Install npm
-          command: |
-            yum -y update
-            curl -fsSL https://rpm.nodesource.com/setup_16.x | bash - && yum -y install nodejs
+            sudo apt update 
+            sudo apt install -y tar gzip
+
       - run:
           name: Deploy backend
           command: |
@@ -401,9 +398,9 @@ workflows:
       - run-migrations: 
           requires: 
             - configure-infrastructure
-      - deploy-frontend: 
-          requires: 
-            - run-migrations
+#      - deploy-frontend: 
+#          requires: 
+#            - run-migrations
       - deploy-backend: 
           requires: 
             - run-migrations
