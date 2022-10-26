@@ -363,7 +363,7 @@ jobs:
           command: |
             # your code here
             cd backend
-            apk add --update nodejs npm
+            apk add --update nodejs npm 
             npm install -g  
             npm --version
             npm run build
