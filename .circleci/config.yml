@@ -313,10 +313,10 @@ jobs:
       - run: 
           command: |
             yum update
-            yum install epel-release
-            yum install nodejs
+            yum -y install epel-release
+            yum -y install nodejs
             node --version
-            yum install npm
+            yum -y install npm
       - run:
           name: Get backend url
           command: |
