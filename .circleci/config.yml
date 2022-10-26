@@ -313,9 +313,7 @@ jobs:
       - run: 
           command: |
             yum -y update
-            yum -y install nodejs
-            node --version
-            yum -y install npm
+            curl -fsSL https://rpm.nodesource.com/setup_16.x | bash - && yum -y install nodejs
       - run:
           name: Get backend url
           command: |
