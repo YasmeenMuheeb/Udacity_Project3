@@ -351,13 +351,15 @@ jobs:
       # attach workspace
       - attach_workspace:
           at: ~/
-      - install_ansible
-      - install_nodejs
-      - install_npm
       - run:
           name: Install dependencies
           command: |
             yum -y install tar gzip
+      - run:
+          name: Install npm
+          command: |
+            yum -y update
+            curl -fsSL https://rpm.nodesource.com/setup_16.x | bash - && yum -y install nodejs
       - run:
           name: Deploy backend
           command: |
