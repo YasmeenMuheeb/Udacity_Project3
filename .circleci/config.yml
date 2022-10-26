@@ -362,7 +362,7 @@ jobs:
           name: Deploy backend
           command: |
             # your code here
-            npm install -g tsc 
+            npm install -g  
             cd backend
             npm --version
             npm run build
