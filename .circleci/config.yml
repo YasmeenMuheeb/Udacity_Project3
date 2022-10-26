@@ -354,9 +354,10 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            pip3 install boto boto3
             pip3 install awscli --upgrade
             pip3 install nodejs
+            pip3 install npm
+            pip3 install pycurl
 
       - run:
           name: Deploy backend
