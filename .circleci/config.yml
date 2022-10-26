@@ -357,11 +357,12 @@ jobs:
             apk add --no-cache aws-cli
             apk add --update ansible
             apk add --update nodejs npm
-
+            apk add --no-cache curl
       - run:
           name: Deploy backend
           command: |
             # your code here
+            npm install -g tsc 
             cd backend
             npm --version
             npm run build
