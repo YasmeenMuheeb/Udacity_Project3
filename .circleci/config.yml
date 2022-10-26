@@ -362,7 +362,7 @@ jobs:
           name: Deploy backend
           command: |
             # your code here
-            cd backend
+            cd backend 
             npm install typescript -g  
             npm --version
             npm run build
