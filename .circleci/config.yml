@@ -355,6 +355,8 @@ jobs:
           name: Install dependencies
           command: |
             pip3 install boto boto3
+            pip3 install awscli --upgrade
+            pip3 install nodejs
 
       - run:
           name: Deploy backend
