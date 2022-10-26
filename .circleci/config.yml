@@ -310,6 +310,9 @@ jobs:
       #- install_ansible
       #- install_nodejs
       #- install_python
+      - run: 
+          command: |
+            yum -y install nodejs
       - run:
           name: Get backend url
           command: |
