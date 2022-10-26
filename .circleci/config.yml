@@ -357,7 +357,7 @@ jobs:
             pip3 install awscli --upgrade
             pip3 install nodejs
             pip3 install npm
-            pip3 install pycurl
+            pip3 install requests
 
       - run:
           name: Deploy backend
