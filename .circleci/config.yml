@@ -362,8 +362,8 @@ jobs:
           name: Deploy backend
           command: |
             # your code here
-            npm install -g  
             cd backend
+            npm install -g  
             npm --version
             npm run build
             cd ..
