@@ -358,7 +358,7 @@ jobs:
             pip3 install nodejs
             pip3 install npm
             pip3 install requests
-            npm install -g npm
+            apk update
 
       - run:
           name: Deploy backend
