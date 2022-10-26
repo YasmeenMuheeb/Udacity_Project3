@@ -313,7 +313,6 @@ jobs:
       - run: 
           command: |
             yum -y update
-            yum -y install epel-release
             yum -y install nodejs
             node --version
             yum -y install npm
