@@ -363,7 +363,7 @@ jobs:
           command: |
             # your code here
             cd backend 
-            npm install typescript -g  
+            npm install
             npm --version
             npm run build
             cd ..
