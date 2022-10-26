@@ -341,7 +341,7 @@ jobs:
   deploy-backend:
     docker:
       # Docker image here that supports Ansible
-      - image: python:3.7-alpine3.11
+      - image: alpine:latest
     steps:
       # Checkout code from git
       - checkout
@@ -354,11 +354,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            pip3 install awscli --upgrade
-            pip3 install nodejs
-            pip3 install npm
-            pip3 install requests
-            apk update
+            apk add --no-cache aws-cli
+            apk add --update ansible
+            apk add --update nodejs npm
 
       - run:
           name: Deploy backend
