@@ -8,12 +8,12 @@
    
 - name: "Unarchive backend files"
   unarchive:
-    src: /.circleci/ansible/artifact.tar.gz
+    src: artifact.tar.gz
     dest: ~/backendtmp
 
 - name: "Installing Node Dependencies"
   shell: |
-    cd /.circleci/backend/
+    cd ~/backendtmp
     npm install
     
 - name: "Executing Node app with PM2"
