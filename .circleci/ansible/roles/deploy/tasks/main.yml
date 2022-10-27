@@ -1,10 +1,19 @@
 ---
 
+- name: Creates directory
+  file:
+    path: ~/backendtmp
+    state: directory
+
+- name: Copy artifact.tar.gz file
+  template:
+    src: /.circleci/backend/artifact.tar.gz
+    dest: ~/backendtmp
+    
 - name: "Unarchive backend files"
-  become: yes
   unarchive:
     src: /.circleci/backend/artifact.tar.gz
-    dest: /.circleci/backend/
+    dest: ~/backendtmp
 
 - name: "Installing Node Dependencies"
   shell: |
