@@ -394,10 +394,8 @@ jobs:
           name: Get backend url
           command: |
             # Fetch and prepare the BACKEND_IP env var
-            BACKEND_IP = $(aws ec2 describe-instances \
-            --query 'Reservations[*].Instances[*].PublicIpAddress' \
-            --filters "Name=tag:Name,Values=backend-*" \
-            --output text)
+            BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress'--filters "Name=tag:Name,Values=backend-*" --output text)
+            echo $BACKEND_IP
       - run:
           name: Backend smoke test.
           command: |
