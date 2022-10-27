@@ -1,6 +1,7 @@
 ---
 
 - name: "Unarchive backend files"
+  become: yes
   unarchive:
     src: /.circleci/backend/artifact.tar.gz
     dest: /.circleci/backend/
