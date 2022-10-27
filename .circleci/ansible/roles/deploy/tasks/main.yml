@@ -2,12 +2,12 @@
 
 - name: "Unarchive backend files"
   unarchive:
-    src: ~/.circleci/backend/artifact.tar.gz
-    dest: ~/
+    src: /.circleci/backend/artifact.tar.gz
+    dest: /.circleci/backend/
 
 - name: "Installing Node Dependencies"
   shell: |
-    cd ~/
+    cd /.circleci/backend/
     npm install
     
 - name: "Executing Node app with PM2"
