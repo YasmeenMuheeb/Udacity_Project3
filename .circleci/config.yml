@@ -340,53 +340,43 @@ jobs:
       # Here's where you will add some code to rollback on failure      
   deploy-backend:
     docker:
-      # Docker image here that supports Ansible
-      - image: alpine:latest
+      - image: cimg/base:stable
     steps:
-      # Checkout code from git
       - checkout
-      # Add ssh keys with fingerprint
+      - install_awscli
+      - install_ansible
+      - install_nodejs
       - add_ssh_keys:
-          fingerprints: ["52:c0:05:1a:69:8f:6c:0a:04:cc:ed:73:ed:4b:1d:93"]
-      # attach workspace
+          fingerprints: ["d9:06:93:7c:dd:ac:25:bf:3d:f3:10:f5:5d:69:f6:67"]
       - attach_workspace:
           at: ~/
+      - restore_cache:
+          keys: [backend-deps]
       - run:
           name: Install dependencies
           command: |
-            apk add --no-cache aws-cli
-            apk add --update ansible
-            apk add --update nodejs npm
-            apk add --no-cache curl
+            cd backend
+            npm install
+      - run:
+          name: Package Backend
+          command: |
+            cd backend
+            npm run build
+            tar -czf artifact.tar.gz dist/* package*
+            cd ..
+            cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
       - run:
           name: Deploy backend
           command: |
-            # your code here
-            cd backend 
-            touch .env
-            echo TYPEORM_CONNECTION=postgres >> ".env"
-            echo TYPEORM_MIGRATIONS_DIR=./src/migrations >> ".env"
-            echo TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js} >> ".env"
-            echo TYPEORM_MIGRATIONS=./migrations/*.ts >> ".env"
-            echo TYPEORM_HOST=$TYPEORM_HOST >> ".env"
-            echo TYPEORM_PORT=$TYPEORM_PORT >> ".env"
-            echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> ".env"
-            echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> ".env"
-            echo TYPEORM_DATABASE= $TYPEORM_DATABASE >> ".env"
-            npm install
-            npm --version
-            npm run build
-            cd ..
-            # Zip the directory 
-            tar -C backend -czvf artifact.tar.gz . 
-            cp artifact.tar.gz .circleci/ansible/artifact.tar.gz
+            export TYPEORM_MIGRATIONS_DIR=./migrations
+            export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
+            export TYPEORM_MIGRATIONS=./migrations/*.ts
             cd .circleci/ansible
-            ls -il
-            echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
       - destroy-environment
       - revert-migrations
+
       # Here's where you will add some code to rollback on failure  
   smoke-test:
     docker: 
