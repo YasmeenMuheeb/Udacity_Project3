@@ -19,4 +19,13 @@
 - name: "Executing Node app with PM2"
   shell: |
     pm2 stop default
-    pm2 start npm -- start
+    pm2 start npm -- start 
+
+- name: "Start Node app"
+  shell: |
+    cd ~/dist
+    npm install -g 
+    npm install -g webpack-dev-server
+    npm run build
+    pm2 start npm --name backend --start
+    
