@@ -363,16 +363,16 @@ jobs:
           command: |
             # your code here
             cd backend 
-            touch vars.env
-            echo TYPEORM_CONNECTION=postgres >> vars.env
-            echo TYPEORM_MIGRATIONS_DIR=./src/migrations >> vars.env
-            echo TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js} >> vars.env
-            echo TYPEORM_MIGRATIONS=./migrations/*.ts >> vars.env
-            echo TYPEORM_HOST=$TYPEORM_HOST >> vars.env
-            echo TYPEORM_PORT=$TYPEORM_PORT >> vars.env
-            echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> vars.env
-            echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> vars.env
-            echo TYPEORM_DATABASE= $TYPEORM_DATABASE >> vars.env
+            touch .env
+            echo TYPEORM_CONNECTION=postgres >> ".env"
+            echo TYPEORM_MIGRATIONS_DIR=./src/migrations >> ".env"
+            echo TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js} >> ".env"
+            echo TYPEORM_MIGRATIONS=./migrations/*.ts >> ".env"
+            echo TYPEORM_HOST=$TYPEORM_HOST >> ".env"
+            echo TYPEORM_PORT=$TYPEORM_PORT >> ".env"
+            echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> ".env"
+            echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> ".env"
+            echo TYPEORM_DATABASE= $TYPEORM_DATABASE >> ".env"
             npm install
             npm --version
             npm run build
