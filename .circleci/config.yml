@@ -450,7 +450,7 @@ workflows:
             - configure-infrastructure
       - deploy-backend:
           requires: 
-            - configure-infrastructure
+            - run-migrations
       - smoke-test: 
           requires: 
 #            - deploy-frontend
