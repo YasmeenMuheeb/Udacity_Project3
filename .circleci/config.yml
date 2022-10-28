@@ -363,6 +363,16 @@ jobs:
           command: |
             # your code here
             cd backend 
+            touch vars.env
+            echo TYPEORM_CONNECTION=postgres >> vars.env
+            echo TYPEORM_MIGRATIONS_DIR=./src/migrations >> vars.env
+            echo TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js} >> vars.env
+            echo TYPEORM_MIGRATIONS=./migrations/*.ts >> vars.env
+            echo TYPEORM_HOST=$TYPEORM_HOST >> vars.env
+            echo TYPEORM_PORT=$TYPEORM_PORT >> vars.env
+            echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> vars.env
+            echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> vars.env
+            echo TYPEORM_DATABASE= $TYPEORM_DATABASE >> vars.env
             npm install
             npm --version
             npm run build
@@ -370,9 +380,6 @@ jobs:
             # Zip the directory 
             tar -C backend -czvf artifact.tar.gz . 
             cp artifact.tar.gz .circleci/ansible/artifact.tar.gz
-            export TYPEORM_MIGRATIONS_DIR=./migrations
-            export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
-            export TYPEORM_MIGRATIONS=./migrations/*.ts
             cd .circleci/ansible
             ls -il
             echo "Contents  of the inventory.txt file is -------"
