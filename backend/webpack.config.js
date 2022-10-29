@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+require('dotenv').config({ path: './.env' }); 
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
