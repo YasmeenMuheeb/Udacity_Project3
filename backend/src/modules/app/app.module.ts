@@ -19,7 +19,7 @@ import { EmployeeModule } from '../domain/employees/employee.module';
     StatusModule,
     ConfigModule,
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule.forRoot({ isGlobal: true })],
+      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => config.TypeOrmDatabase,
     }),
